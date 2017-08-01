@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>afterVote</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/day.css">
+</head>
+<body>
+<header>daytime</header>
+<main>
+    <div class="main-top">
+        <img src="../image/daytime-photo.png" alt="">
+    </div>
+    <div id="main-text">2号选手被杀死</div>
+</main>
+<footer>
+    <div class="speak">发表遗言</div>
+    <img src="../image/daytime-goto.png" alt="">
+    <div class="speak">玩家依次发言</div>
+    <img src="../image/daytime-goto.png" alt="">
+    <button id="goNext" class="fbutton">去投票</button>
+</footer>
+<script src="../jQuery/jquery-3.2.1.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var allPlayer = sessionStorage.oStatus;
+        var oStatus = JSON.parse(allPlayer);
+        var lastVoted = sessionStorage.votedPeople;
+        console.log(oStatus);
+        console.log("天数：" + lastVoted);
+        var txt1 = "";
+        txt1 += oStatus[lastVoted].num + "号玩家被投死";
+        $("#main-text").text(txt1);
+        $("#goNext").text("天黑请闭眼").click(function () {
+            location.href="../html/before.html";
+        });
+
+    })
+</script>
+
+</body>
+</html>

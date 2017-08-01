@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>night</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/judge.css">
+</head>
+<body>
+<header>杀手杀人</header>
+<main></main>
+<footer><button id="goDay" class="fbutton">天亮了</button></footer>
+<script src="../jQuery/jquery-3.2.1.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script >
+    $(document).ready(function() {
+        var allPlayers = sessionStorage.oStatus;
+        var oStatus = JSON.parse(allPlayers);
+        console.log(oStatus);
+        var play="";//生成玩家dom元素
+        var allName = $(".span1");
+        var x;
+        var killPeople;//死亡玩家号码
+        var marginB = (Math.ceil(oStatus.length/3) * 40 + 20);
+        for (var i = 0; i < oStatus.length; i++) {
+            play += "<div class='box'>" + "<div class='anniu'>" + "<span class='span1'>" + oStatus[i].identity +"</span> "
+                    + "<span class='span2'>" + (i+1) +"号" +"</span>" + "<button class='choose'> " + "<img src='../image/task7-2_05.png'>"
+                    + "</button>" + "</div>" + "</div>";
+            $("main").css("margin-bottom",marginB + "vw").eq(0).html(play);
+        }
+        $.each(oStatus,function(index,value){
+            if(this.status == "killed" || this.status == "voted") {
+                var z = oStatus.indexOf(this);
+                $(".span1").eq(z).css("backgroundColor","gray");
+            }
+        });
+
+        $(".choose").hide().click(function(){
+            var n = $(this).index("button");
+            if(oStatus[n].identity == "杀手"){
+                alert("不能杀死同伴哦！")
+            }else {
+                if(killPeople != undefined){
+                    $(".span1").eq(killPeople).css("backgroundColor","#f5c97b");
+                    oStatus[killPeople].status = "alive";
+                }
+
+                $(".span1").eq(n).css("backgroundColor","red");
+                oStatus[n].status = "killed";
+                oStatus[n].records = oStatus[n].day;
+                console.log(oStatus[n].records);
+                killPeople = n;
+                console.log(oStatus);
+                statusAll = JSON.stringify(oStatus);
+                sessionStorage.oStatus = statusAll;
+                sessionStorage.killPeople = killPeople;
+                console.log(statusAll);
+                console.log(killPeople);
+            }
+            $("button").eq(n).hide();
+
+        });
+        $(".anniu").mouseenter(function(){
+            var n = $(".anniu").index(this);
+            $("button").eq(n).show();
+        });
+        $(".box").mouseleave(function(){
+            var n = $(".box").index(this);
+            $("button").eq(n).hide();
+        });
+        $("#goDay").click(function () {
+            if (killPeople == undefined){
+                alert("选择要杀死的目标！");
+            } else {
+                location.href = "../html/day.html";
+            }
+        });
+
+
+    });
+</script>
+</body>
+</html>

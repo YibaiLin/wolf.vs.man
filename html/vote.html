@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>vote</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/judge.css">
+</head>
+<body>
+
+<header>投票</header>
+<main></main>
+<footer><button id="Next" class="fbutton">投死</button></footer>
+<script src="../jQuery/jquery-3.2.1.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script >
+    $(document).ready(function() {
+        var allPlayer = sessionStorage.oStatus;
+        var oStatus = JSON.parse(allPlayer);
+        console.log(oStatus);//提取玩家对象并打印；
+        var play="";//定义动态生成的玩家牌面；
+        var votedPeople;//本轮被投出的玩家，即可避免重复投出选手，亦可将投出选手信息传递至下个页面；
+        var statusAll = "";//字符串格式保存的投票后的玩家对象oStatus；
+        var killer = [];//定义这样一个对象数组，oStatus中身份是杀手的且状态是alive的；
+        var people = [];//定义这样一个对象数组，oStatus中身份是平民的且状态是alive的；
+        var marginB = (Math.ceil(oStatus.length/3) * 40 + 20);//html页面中，设置标签<main>的下边距动态增加；
+
+        //动态生成玩家牌数；
+        for (var i = 0; i < oStatus.length; i++) {
+            play += "<div class='box'>" + "<div class='anniu'>" + "<span class='span1'>" + oStatus[i].identity +"</span> "
+                    + "<span class='span2'>" + (i+1) +"号" +"</span>" + "<button class='choose'> " + "<img src='../image/task7-2_05.png'>"
+                    + "</button>" + "</div>" + "</div>";
+            $("main").css("margin-bottom",marginB + "vw").eq(0).html(play);
+        }
+        //遍历数组中已经死亡的玩家，并将其背景设置为灰色；
+        $.each(oStatus,function(index,value){
+            if(this.status == "killed" || this.status == "voted") {
+                var z = oStatus.indexOf(this);
+                $(".span1").eq(z).css("backgroundColor","gray");
+            }
+        });
+
+        //将匕首图标隐藏并设置点击事件；
+        $(".choose").hide().click(function(){
+            //将鼠标当前选择的玩家的序列值传递给n；
+            var n = $(this).index("button");
+            //无论什么情况，点击匕首后，匕首图标回归隐藏状态；
+            $("button").eq(n).hide();
+            //设置已被杀死的玩家无法被投出去了；
+            if(oStatus[n].status == "killed"){
+                alert("难道被你杀一次还不够吗，let this poor dog go");
+            }
+            else {
+                //设置改变 要投出去的玩家后 ，将之前选择的玩家状态还原；
+                if (votedPeople != undefined) {
+                    $(".span1").eq(votedPeople).css("backgroundColor", "#f5c97b");
+                    oStatus[votedPeople].status = "alive";
+                    $.each(oStatus,function (index, value) {
+                        this.day--;
+                    });
+                }
+
+                //改变被选中玩家的状态；
+                $(".span1").eq(n).css("backgroundColor", "red");//背景色设为红色；
+                oStatus[n].status = "voted";//状态改变以记录信息；
+                oStatus[n].records = oStatus[n].day;//将天数信息传递给records属性以记录信息；
+                console.log(oStatus[n].records);
+                votedPeople = n;// 记录本次被选中的玩家；
+
+                //遍历对象数组，生成存活的杀手和平民数组；
+                $.each(oStatus,function(index,value) {
+                    this.day++;
+                    if (this.identity == "杀手" && this.status == "alive") {
+                        var m = oStatus.indexOf(this);
+                        killer.push(oStatus[m]);
+                    }
+                    if (this.identity == "平民" && this.status == "alive") {
+                        var y = oStatus.indexOf(this);
+                        people.push(oStatus[y]);
+                    }
+                });
+                //保存投票后的数组和被投出的玩家信息；
+                statusAll = JSON.stringify(oStatus);
+                sessionStorage.oStatus = statusAll;
+                sessionStorage.votedPeople = votedPeople;
+            }
+        });
+
+        //设置鼠标进入选手牌面时，匕首图标显示；
+        $(".anniu").mouseenter(function(){
+            var n = $(".anniu").index(this);
+            $("button").eq(n).show();
+        });
+
+        //设置鼠标离开选手牌面时，匕首图标隐藏；
+        $(".box").mouseleave(function(){
+            var n = $(".box").index(this);
+            $("button").eq(n).hide();
+        });
+
+        console.log(oStatus[0].day);//打印当前天数；
+
+        //底部按钮点击事件，判断是去发表遗言页面还是结束游戏页面
+        $("#Next").click(function () {
+            if (votedPeople == undefined){
+                alert("投票给你怀疑的对象！");
+            }
+            //杀手数为零，设置winner属性为平民，并去结果页；
+           else if(killer.length == 0 ){
+                oStatus[0].winner = "平民";
+                location.href="../html/result.html";
+            }
+            //杀手数大于等于平民数，设置winner属性值为杀手，并去结果页；
+            else if(killer.length >= people.length-1) {
+                oStatus[0].winner = "杀手";
+                location.href = "../html/result.html";
+            }
+            //游戏继续；
+            else{
+                location.href="../html/afterVote.html";
+            }
+            //若游戏结束，将winner属性记录下来并保存；
+            statusAll = JSON.stringify(oStatus);
+            sessionStorage.oStatus = statusAll;
+        });
+
+    });
+</script>
+</body>
+</html>

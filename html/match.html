@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>match</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/match.css">
+
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron main-top">
+        <div class="panel panel-primary">
+            <div class="panel-heading">玩家身份匹配</div>
+            <table class="table">
+                <tr><td>杀手</td><td id="kiPlayers">1</td></tr>
+                <tr><td>平民</td><td id="ciPlayers">5</td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="search-box" >
+    <form class="bs-example bs-example-form" onsubmit="return false;">
+        <div class="input-group">
+            <input type="text" class="form-control" id="text" value="6">
+					<span class="input-group-btn" id="go">
+						<button class="btn btn-default" type="button">
+							Go!
+						</button>
+					</span>
+        </div><!-- /input-group -->
+    </form>
+</div>
+
+<div class="container progress-content">
+                    <!--人数设置拖动条-->
+                    <button class="btn btn-primary " id="btn-minus"><img src="../image/setting-subtract.png" alt=""></button>
+                    <label class="label-range" for="range">
+                        <input type="range" name="range" id="range" min="6" max="18" step="1" value="6">
+                    </label>
+                    <button class="btn btn-primary " id="btn-add"><img src="../image/setting-add.png" alt=""></button>
+
+</div>
+
+    <button class=" btn btn-primary btn-lg btn-block  " id="btn-bottom">发牌</button>
+<script src="../jQuery/jquery-3.2.1.js"></script>
+<script src="../js/match.js"></script>
+<script>
+    $(document).ready(function () {
+
+      $("#btn-bottom").click(function () {
+          location.href = "../html/characters.html";
+      })
+    });
+</script>
+</body>
+</html>
