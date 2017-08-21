@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>day</title>
+    <link rel="stylesheet" href="../font_awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/day.css">
+</head>
+<body>
+<div class="wrap">
+    <div class="fonts">
+        <header>daytime</header>
+
+        <!--显示昨晚被杀死或者白天被投票放逐的玩家-->
+        <main class="flex-center">
+            <img src="../image/cute-cry2.gif" alt="the dead killed last night is crying">
+            <div class="text" id="text"></div>
+        </main>
+
+        <!--游戏流程-->
+        <div class="footer flex-center">
+            <div class="speak">发表遗言</div>
+            <span class="fa fa-arrow-down"></span>
+
+            <div class="speak">玩家依次发言</div>
+            <span class="fa fa-arrow-down"></span>
+
+            <button class="f-btn" id="goNext">上帝发言</button>
+        </div>
+    </div>
+</div>
+<script src="../jQuery/jquery-3.2.1.js"></script>
+<script>
+    $(document).ready(function () {
+        var lastVoted = JSON.parse(sessionStorage.lastVoted);//获取刚刚被投死的玩家的号码
+
+        $("#text").text("昨晚" + (lastVoted+1) + "号玩家被全民放逐");
+
+        //跳转至“上帝视角”页面
+        $("#goNext").click(function () {
+            location.href = "before-night.html";
+        })
+    })
+</script>
+</body>
+</html>

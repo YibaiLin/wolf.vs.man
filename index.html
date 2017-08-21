@@ -1,62 +1,46 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>homepage</title>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <meta name = "viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Home</title>
+    <link rel="stylesheet" href="font_awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-    <nav class="navbar navbar-default " >
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#home-navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+    <div class="wrap">
+        <!--“简单版”布局-->
+        <div class="card pointer">
+            <div class="card-top">简&nbsp;单&nbsp;版</div>
+
+            <div class="card-content flex-center">
+                <img class="blue-wolf-img" src="image/blue1.png" alt="wolf">
+
+                <button class="f-btn start" id="start">
+                    <span>开始&nbsp;</span>
+
+                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
                 </button>
-                <a href="#" class="navbar-brand">肥工大</a>
-            </div>
-            <div class="collapse navbar-collapse" id="home-navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">我的账号</a></li>
-                    <li><a href="#">游戏记录</a></li>
-                    <li><a href="#">我的好友</a></li>
-                </ul>
             </div>
         </div>
-    </nav>
-    <div class="container-fluid">
-        <div class="jumbotron">
-            <h1>请选择游戏</h1>
-            <br><br>
-            <p>
-                <button class="btn btn-primary btn-lg btn-block" id="simplified">简化版</button>
-            </p>
-            <p>
-                <button class="btn btn-primary btn-lg btn-block">复杂版</button>
-            </p>
-            <p>
-                <button class="btn btn-primary btn-lg btn-block">高手版</button>
-            </p>
+
+        <!--“复杂版”布局-->
+        <div class="card">
+            <div class="card-top">复&nbsp;杂&nbsp;版</div>
+
+            <div class="card-content flex-center card2 ">
+                <img class="wolf-img" src="image/game2.png" alt="wolf">
+            </div>
         </div>
     </div>
-    <footer>Copyright © 2013-2017 <strong><a href="http://www.yibailin.cn">Yibai Lin</a></strong>  All Rights Reserved. 备案号：豫ICP备17014278号-1
-    </footer>
-
-
-
-
     <script src="jQuery/jquery-3.2.1.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src="../jQuery/jquery-3.2.1.js"></script>
     <script>
         $(document).ready(function () {
-            $("#simplified").click(function () {
+            $("#start").click(function () {
                 location.href = "html/match.html";
             });
-        });
+        })
     </script>
 </body>
 </html>

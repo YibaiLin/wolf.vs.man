@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>judge</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/roles-display.css">
+</head>
+<body>
+<div class="wrap">
+    <div class="fonts">
+        <header>角色分配结果页</header>
+
+        <!--随机生成的玩家身份匹配结果-->
+        <main></main>
+
+        <footer><button class="f-btn" id="start">开始游戏</button></footer>
+    </div>
+</div>
+<script src="../jQuery/jquery-3.2.1.js"></script>
+<script>
+    $(document).ready(function () {
+        var all = JSON.parse(sessionStorage.all);//提取玩家身份信息
+        console.log(all);
+        var players = [];//定义一个对象数组，保存所有玩家的号码、角色、状态、记录信息
+        var game = {day: 1, winner: "", winnerText: ""};//存储游戏进程信息
+        var killed = [];//定义并存储被杀死玩家的信息
+        var voted = [];//定义并存储被投死玩家的信息
+        sessionStorage.killed = JSON.stringify(killed);
+        sessionStorage.voted = JSON.stringify(voted);
+
+        for(var i=0; i < all.length; i++) {
+            //显示玩家角色信息的dom元素
+            var content = "<div class='identity flex-center shadow'>";
+            if(all[i] === "狼人") {
+                content += "<img src='../image/cute-wolf2.png'>";
+            }else {
+                content += "<img src='../image/farmer2.png'>";
+            }
+            content += "<span class='player'>" + (i+1) + " 号" + "</span></div>";
+
+            //玩家介绍元素动态添加到页面中
+            $("main").append(content);
+
+            players[i] = {id: (i+1), role: all[i], status: "alive", records: 19 };//生成的玩家对象数组
+        }
+        sessionStorage.players = JSON.stringify(players);//存储玩家对象数组
+        console.log(players);
+        sessionStorage.game = JSON.stringify(game);//存储游戏进程信息
+
+        //跳转至“上帝视角”页面
+        $("#start").click(function () {
+            location.href = "before-night.html";
+        })
+    })
+</script>
+</body>
+</html>

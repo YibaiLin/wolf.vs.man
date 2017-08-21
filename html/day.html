@@ -1,43 +1,48 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>day</title>
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../font_awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/day.css">
 </head>
 <body>
-<header>daytime</header>
-<main>
-    <div class="main-top">
-        <img src="../image/daytime-photo.png" alt="">
+<div class="wrap">
+    <div class="fonts">
+        <header>daytime</header>
+
+        <!--显示昨晚被杀死或者白天被投票放逐的玩家-->
+        <main class="flex-center">
+            <img src="../image/cute-cry2.gif" alt="the dead killed last night is crying">
+            <div class="text" id="text"></div>
+        </main>
+
+        <!--游戏流程-->
+        <div class="footer flex-center">
+            <div class="speak">发表遗言</div>
+            <span class="fa fa-arrow-down"></span>
+
+            <div class="speak">玩家依次发言</div>
+            <span class="fa fa-arrow-down"></span>
+
+            <button class="f-btn" id="goNext">去投票</button>
+        </div>
     </div>
-    <div id="main-text">2号选手被杀死</div>
-</main>
-<footer>
-    <div class="speak">发表遗言</div>
-    <img src="../image/daytime-goto.png" alt="">
-    <div class="speak">玩家依次发言</div>
-    <img src="../image/daytime-goto.png" alt="">
-    <button id="goNext" class="fbutton">去投票</button>
-</footer>
+</div>
 <script src="../jQuery/jquery-3.2.1.js"></script>
-<script src="../bootstrap/js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function () {
-        var allPlayer = sessionStorage.oStatus;
-        var oStatus = JSON.parse(allPlayer);
-        var lastKilled = sessionStorage.killPeople;
-        console.log(oStatus);
-        console.log(lastKilled);
-        var txt1 = "";
-        txt1 += oStatus[lastKilled].num + "号玩家被杀死";
-        $("#main-text").text(txt1);
-        $("#goNext").text("去投票").click(function () {
-            location.href="../html/vote.html";
-        });
-    });
+        var lastKilled = JSON.parse(sessionStorage.lastKilled);//获取昨晚被杀死玩家的号码
+
+        $("#text").text("昨晚" + (lastKilled+1) + "号玩家被杀死");
+
+        //跳转至“投票”页面
+        $("#goNext").click(function () {
+            location.href = "vote.html";
+        })
+    })
 </script>
 </body>
 </html>

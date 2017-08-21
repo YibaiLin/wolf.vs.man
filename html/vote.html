@@ -1,131 +1,117 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>vote</title>
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/judge.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/roles-display.css">
 </head>
 <body>
+<div class="wrap">
+    <div class="fonts">
+        <header>投票给你怀疑的玩家</header>
 
-<header>投票</header>
-<main></main>
-<footer><button id="Next" class="fbutton">投死</button></footer>
+        <!--随机生成的玩家身份匹配结果-->
+        <main></main>
+
+        <footer><button class="f-btn" id="next">投票结果</button></footer>
+    </div>
+</div>
 <script src="../jQuery/jquery-3.2.1.js"></script>
-<script src="../bootstrap/js/bootstrap.min.js"></script>
-<script >
-    $(document).ready(function() {
-        var allPlayer = sessionStorage.oStatus;
-        var oStatus = JSON.parse(allPlayer);
-        console.log(oStatus);//提取玩家对象并打印；
-        var play="";//定义动态生成的玩家牌面；
-        var votedPeople;//本轮被投出的玩家，即可避免重复投出选手，亦可将投出选手信息传递至下个页面；
-        var statusAll = "";//字符串格式保存的投票后的玩家对象oStatus；
-        var killer = [];//定义这样一个对象数组，oStatus中身份是杀手的且状态是alive的；
-        var people = [];//定义这样一个对象数组，oStatus中身份是平民的且状态是alive的；
-        var marginB = (Math.ceil(oStatus.length/3) * 40 + 20);//html页面中，设置标签<main>的下边距动态增加；
+<script>
+    $(document).ready(function () {
+        var players = JSON.parse(sessionStorage.players);//提取保存玩家信息的对象数组
+        console.log(players);
+        var game = JSON.parse(sessionStorage.game);//提取保存游戏进程信息的数组
+        var lastVoted;//保存本轮被投死玩家的号码
+        var wolves = [];//定义投票后存活的狼人数
+        var humans = [];//定义投票后存活的平民数
+        var voted = JSON.parse(sessionStorage.voted);//获取之前被投死的玩家数组；
 
-        //动态生成玩家牌数；
-        for (var i = 0; i < oStatus.length; i++) {
-            play += "<div class='box'>" + "<div class='anniu'>" + "<span class='span1'>" + oStatus[i].identity +"</span> "
-                    + "<span class='span2'>" + (i+1) +"号" +"</span>" + "<button class='choose'> " + "<img src='../image/task7-2_05.png'>"
-                    + "</button>" + "</div>" + "</div>";
-            $("main").css("margin-bottom",marginB + "vw").eq(0).html(play);
+        for(var i=0; i < players.length; i++) {
+            //显示玩家角色信息的dom元素
+            var content = "<div class='identity flex-center shadow'>";
+            if(players[i].role === "狼人") {
+                content += "<img src='../image/cute-wolf2.png'>";
+            }else {
+                content += "<img src='../image/farmer2.png'>";
+            }
+            content += "<span class='player'>" + (i+1) + " 号" + "</span></div>";
+
+            //玩家介绍元素动态添加到页面中
+            $("main").append(content);
         }
-        //遍历数组中已经死亡的玩家，并将其背景设置为灰色；
-        $.each(oStatus,function(index,value){
-            if(this.status == "killed" || this.status == "voted") {
-                var z = oStatus.indexOf(this);
-                $(".span1").eq(z).css("backgroundColor","gray");
-            }
-        });
 
-        //将匕首图标隐藏并设置点击事件；
-        $(".choose").hide().click(function(){
-            //将鼠标当前选择的玩家的序列值传递给n；
-            var n = $(this).index("button");
-            //无论什么情况，点击匕首后，匕首图标回归隐藏状态；
-            $("button").eq(n).hide();
-            //设置已被杀死的玩家无法被投出去了；
-            if(oStatus[n].status == "killed"){
-                alert("难道被你杀一次还不够吗，let this poor dog go");
+        //先把已被杀死或投死的玩家标识出来
+        $("main div").each(function (i) {
+            if(players[i].status === "killed" || players[i].status === "voted") {
+                $(this).css("backgroundColor", "gray");
             }
-            else {
-                //设置改变 要投出去的玩家后 ，将之前选择的玩家状态还原；
-                if (votedPeople != undefined) {
-                    $(".span1").eq(votedPeople).css("backgroundColor", "#f5c97b");
-                    oStatus[votedPeople].status = "alive";
-                    $.each(oStatus,function (index, value) {
-                        this.day--;
-                    });
+        })
+        //选择要放逐的玩家
+        .click(function () {
+            var n = $(this).index("main div");//获取当前点击选手的索引
+            console.log(n);
+
+            if(players[n].status === "killed" || players[n].status === "voted") {
+                alert("一个人是不能死两次的！");
+            }else {
+                //如果改变了要投死的目标，则要将之前的对象状态复位
+                if(lastVoted !== undefined) {
+                    players[lastVoted].status = "alive";//状态复位
+                    $("main div").eq(lastVoted).css("backgroundColor", "white");//背景色复位
+                    voted.pop();//“被投死的玩家”数组复位
                 }
+                $(this).css("backgroundColor", "red");//被杀死的选手改变其背景色为红色
+                players[n].status = "voted"; //记录被杀死玩家的状态
+                players[n].records = game.day;//记录被杀死玩家的死亡时间
+                lastVoted = n;//记录被杀死玩家的索引
+                voted.push(n+1);//将被投死玩家的id加入killed数组
 
-                //改变被选中玩家的状态；
-                $(".span1").eq(n).css("backgroundColor", "red");//背景色设为红色；
-                oStatus[n].status = "voted";//状态改变以记录信息；
-                oStatus[n].records = oStatus[n].day;//将天数信息传递给records属性以记录信息；
-                console.log(oStatus[n].records);
-                votedPeople = n;// 记录本次被选中的玩家；
-
-                //遍历对象数组，生成存活的杀手和平民数组；
-                $.each(oStatus,function(index,value) {
-                    this.day++;
-                    if (this.identity == "杀手" && this.status == "alive") {
-                        var m = oStatus.indexOf(this);
-                        killer.push(oStatus[m]);
-                    }
-                    if (this.identity == "平民" && this.status == "alive") {
-                        var y = oStatus.indexOf(this);
-                        people.push(oStatus[y]);
-                    }
+                //生成最新的“存活狼人”数组和“存活平民”数组
+                wolves = players.filter(function (player) {
+                    return player.status === "alive" && player.role === "狼人";
                 });
-                //保存投票后的数组和被投出的玩家信息；
-                statusAll = JSON.stringify(oStatus);
-                sessionStorage.oStatus = statusAll;
-                sessionStorage.votedPeople = votedPeople;
+
+                humans = players.filter(function (player) {
+                    return player.status === "alive" && player.role === "平民";
+                });
+
+                console.log("存活的狼人数组：" + wolves + "</br>存活的平民数组：" + humans);
+                sessionStorage.players = JSON.stringify(players);//存储更新后的玩家对象数组
+                sessionStorage.lastVoted = JSON.stringify(lastVoted);//将本轮被杀死玩家信息传递至下个页面
+                sessionStorage.voted = JSON.stringify(voted);//存储更新后的“被投死玩家”数组
             }
         });
-
-        //设置鼠标进入选手牌面时，匕首图标显示；
-        $(".anniu").mouseenter(function(){
-            var n = $(".anniu").index(this);
-            $("button").eq(n).show();
-        });
-
-        //设置鼠标离开选手牌面时，匕首图标隐藏；
-        $(".box").mouseleave(function(){
-            var n = $(".box").index(this);
-            $("button").eq(n).hide();
-        });
-
-        console.log(oStatus[0].day);//打印当前天数；
 
         //底部按钮点击事件，判断是去发表遗言页面还是结束游戏页面
-        $("#Next").click(function () {
-            if (votedPeople == undefined){
+        $("#next").click(function () {
+            if (lastVoted === undefined){
                 alert("投票给你怀疑的对象！");
             }
-            //杀手数为零，设置winner属性为平民，并去结果页；
-           else if(killer.length == 0 ){
-                oStatus[0].winner = "平民";
-                location.href="../html/result.html";
+            //平民获胜的情况，并去结果页；
+            else if(wolves.length === 0 ){
+                game.winner = "平民";
+                game.winnerText = "福尔摩斯般的逻辑，找狼高手就是你！";
+                sessionStorage.game = JSON.stringify(game);
+                location.href="result.html";
             }
-            //杀手数大于等于平民数，设置winner属性值为杀手，并去结果页；
-            else if(killer.length >= people.length-1) {
-                oStatus[0].winner = "杀手";
-                location.href = "../html/result.html";
+            //狼人获胜的情况，并去结果页；
+            else if(wolves.length >= humans.length-1) {
+                game.winner = "狼人";
+                game.winnerText = "太棒了！谁都不服就服你的演技！";
+                sessionStorage.game = JSON.stringify(game);
+                location.href = "result.html";
             }
             //游戏继续；
             else{
-                location.href="../html/afterVote.html";
+                game.day++;//游戏天数加 1
+                sessionStorage.game = JSON.stringify(game);
+                location.href="after-vote.html";
             }
-            //若游戏结束，将winner属性记录下来并保存；
-            statusAll = JSON.stringify(oStatus);
-            sessionStorage.oStatus = statusAll;
         });
-
-    });
+    })
 </script>
 </body>
 </html>

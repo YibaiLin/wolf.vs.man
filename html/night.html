@@ -1,84 +1,95 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>night</title>
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/judge.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/roles-display.css">
 </head>
 <body>
-<header>杀手杀人</header>
-<main></main>
-<footer><button id="goDay" class="fbutton">天亮了</button></footer>
+<div class="wrap">
+    <div class="fonts">
+        <header>天黑了，狼人请杀人</header>
+
+        <!--随机生成的玩家身份匹配结果-->
+        <main></main>
+
+        <footer><button class="f-btn" id="continue">天亮了</button></footer>
+    </div>
+</div>
 <script src="../jQuery/jquery-3.2.1.js"></script>
-<script src="../bootstrap/js/bootstrap.min.js"></script>
-<script >
-    $(document).ready(function() {
-        var allPlayers = sessionStorage.oStatus;
-        var oStatus = JSON.parse(allPlayers);
-        console.log(oStatus);
-        var play="";//生成玩家dom元素
-        var allName = $(".span1");
-        var x;
-        var killPeople;//死亡玩家号码
-        var marginB = (Math.ceil(oStatus.length/3) * 40 + 20);
-        for (var i = 0; i < oStatus.length; i++) {
-            play += "<div class='box'>" + "<div class='anniu'>" + "<span class='span1'>" + oStatus[i].identity +"</span> "
-                    + "<span class='span2'>" + (i+1) +"号" +"</span>" + "<button class='choose'> " + "<img src='../image/task7-2_05.png'>"
-                    + "</button>" + "</div>" + "</div>";
-            $("main").css("margin-bottom",marginB + "vw").eq(0).html(play);
-        }
-        $.each(oStatus,function(index,value){
-            if(this.status == "killed" || this.status == "voted") {
-                var z = oStatus.indexOf(this);
-                $(".span1").eq(z).css("backgroundColor","gray");
-            }
-        });
+<script>
+    $(document).ready(function () {
+        var players = JSON.parse(sessionStorage.players);//提取保存玩家信息的对象数组
+        console.log(players);
+        var game = JSON.parse(sessionStorage.game);//提取保存游戏进程信息的数组
+        var lastKilled;//保存本轮被杀死的玩家
+        var killed = JSON.parse(sessionStorage.killed);//提取之前被杀死的玩家；
 
-        $(".choose").hide().click(function(){
-            var n = $(this).index("button");
-            if(oStatus[n].identity == "杀手"){
-                alert("不能杀死同伴哦！")
+        for(var i=0; i < players.length; i++) {
+            //显示玩家角色信息的dom元素
+            var content = "<div class='identity flex-center shadow'>";
+            if(players[i].role === "狼人") {
+                content += "<img src='../image/cute-wolf2.png'>";
             }else {
-                if(killPeople != undefined){
-                    $(".span1").eq(killPeople).css("backgroundColor","#f5c97b");
-                    oStatus[killPeople].status = "alive";
+                content += "<img src='../image/farmer2.png'>";
+            }
+            content += "<span class='player'>" + (i+1) + " 号" + "</span></div>";
+
+            //玩家介绍元素动态添加到页面中
+            $("main").append(content);
+        }
+
+
+        //先把已被杀死或投死的玩家标识出来
+        $("main div").each(function (i) {
+            if(players[i].status === "killed" || players[i].status === "voted") {
+                $(this).css("backgroundColor", "gray");
+            }
+        })
+        //狼人选择一个平民并“杀死”他
+        .click(function () {
+            var n = $(this).index("main div");//获取当前点击选手的索引
+            console.log("当前点击div的index：" + n);
+
+            //设置不能选择已被杀或被投的玩家
+            if(players[n].status === "killed" || players[n].status === "voted") {
+                alert("一个人是不能死两次的！");
+            }else {
+                //先对目标是否为“狼人”进行判断
+                if(players[n].role === "狼人") {
+                    alert("不能杀死同伴哦！");
+                }else {
+                    //如果狼人改变了要杀死的目标，则要将之前的对象状态复位
+                    if(lastKilled !== undefined) {
+                        players[lastKilled].status = "alive";//状态复位
+                        $("main div").eq(lastKilled).css("backgroundColor", "white");//背景色复位
+                        killed.pop();//“被杀死的玩家”数组复位
+                    }
+                    $(this).css("backgroundColor", "red");//被杀死的选手改变其背景色为红色
+                    players[n].status = "killed"; //记录被杀死玩家的状态
+                    players[n].records = game.day;//记录被杀死玩家的死亡时间
+                    lastKilled = n;//记录被杀死玩家的索引
+                    killed.push(n+1);//将被杀死玩家的id加入killed数组
+
+                    sessionStorage.players = JSON.stringify(players);//存储更新后的玩家对象数组
+                    sessionStorage.lastKilled = JSON.stringify(lastKilled);//将本轮被杀死玩家信息传递至下个页面
+                    sessionStorage.killed = JSON.stringify(killed);//存储更新后的被杀“死玩家”数组
                 }
-
-                $(".span1").eq(n).css("backgroundColor","red");
-                oStatus[n].status = "killed";
-                oStatus[n].records = oStatus[n].day;
-                console.log(oStatus[n].records);
-                killPeople = n;
-                console.log(oStatus);
-                statusAll = JSON.stringify(oStatus);
-                sessionStorage.oStatus = statusAll;
-                sessionStorage.killPeople = killPeople;
-                console.log(statusAll);
-                console.log(killPeople);
             }
-            $("button").eq(n).hide();
 
         });
-        $(".anniu").mouseenter(function(){
-            var n = $(".anniu").index(this);
-            $("button").eq(n).show();
-        });
-        $(".box").mouseleave(function(){
-            var n = $(".box").index(this);
-            $("button").eq(n).hide();
-        });
-        $("#goDay").click(function () {
-            if (killPeople == undefined){
-                alert("选择要杀死的目标！");
-            } else {
-                location.href = "../html/day.html";
+
+        //跳转至“发表遗言”的环节
+        $("#continue").click(function () {
+            if(lastKilled === undefined) {
+                alert("请选择要杀死的目标");
+            }else {
+                location.href = "day.html";
             }
-        });
-
-
-    });
+        })
+    })
 </script>
 </body>
 </html>

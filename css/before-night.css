@@ -1,0 +1,68 @@
+.fonts {
+    color: #fff;
+}
+
+main{
+    position:relative;
+    left:2%;
+
+    padding:20px 0;
+    width: 96%;
+}
+
+.which-day {
+    margin: 20px 0 30px 50px;
+    padding: 20px 0;
+
+    font-size: 30px;
+    text-align: center;
+    letter-spacing: 6px;
+
+    color: #428bca;
+}
+
+.content {
+    position: relative;
+
+    margin-left: 50px;
+    border-left: 2px solid #c9c9c9;
+    padding: 60px;
+}
+
+.night,
+.sun{
+    position: absolute;
+    top:60px;
+    left: -32px;
+}
+
+.sun{
+    top:300px;
+}
+
+.content-step-part {
+    position: relative;
+
+    margin-bottom: 40px;
+    border-radius: 8px;
+    width: 100%;
+    height:60px;
+
+    line-height: 60px;
+    text-align: center;
+
+    background-color: #428bca;
+
+    box-shadow: 0 0 25px rgba(66, 139, 202, 0.5);
+
+    cursor: pointer;
+}
+
+.triangle-left {
+    position: absolute;
+    top: 18px;
+    left: -24px;
+
+    border:12px solid;
+    border-color: transparent #428bca    transparent transparent;
+}

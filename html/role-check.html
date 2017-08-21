@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>characters</title>
+    <link rel="stylesheet" href="../font_awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/role-check.css">
+</head>
+<body>
+    <div class="wrap">
+        <div class="fonts">
+
+            <!--页面标题“查看身份”区域-->
+            <header class="center">
+                <span>查&nbsp;看&nbsp;身&nbsp;份</span>
+
+                <button class="skip" id="skip">skip&nbsp;&nbsp;<i class="fa fa-arrow-right"></i></button>
+            </header>
+
+            <!--提示玩家如何操作的信息-->
+            <div class="tip margin-top1">
+                <span class="triangle"></span>
+
+                <span class="padding-left1">请玩家依次传递以查看身份</span>
+            </div>
+
+            <!--身份卡牌及身份信息-->
+            <div class="game-card">
+                <img class="img-responsive" id="roleImg" src="../image/back-face2.png" alt="back-face" >
+
+                <p class="card-msg" id="cardMsg">上帝，请开始分配身份</p>
+            </div>
+
+            <!--“下一步”按钮-->
+            <button class="f-btn check" id="check">传递给 1 号玩家</button>
+        </div>
+    </div>
+</body>
+<script src="../jQuery/jquery-3.2.1.js"></script>
+<script>
+    $(document).ready(function () {
+        var all = JSON.parse(sessionStorage.all); //提取角色分配信息
+        console.log(all.length);
+        var check = $("#check"); //底部按钮
+        var roleImg = $("#roleImg"); //卡牌图片
+        var cardMsg = $("#cardMsg"); //卡牌底部信息
+        var clickcount = 1; //鼠标点击次数
+
+        /*
+         * 根据鼠标点击次数匹配“玩家号码”:
+         * 玩家号 = (clickcount+1)/2,
+         * 玩家身份索引 = (clickcount-1)/2
+         */
+        check.click(function () {
+            var idMsg = "<span class = emphasis>" + (clickcount/2 + 0.5) + "</span>" + " 号玩家，你的身份是 " + "<span class='emphasis'>" + all[clickcount/2 - 0.5] + "</span> " + " ,切记切记！";//卡牌底部显示的内容
+
+            //当点击次数为单数时，显示身份信息
+            if(clickcount % 2 !== 0) {
+                //根据角色加载图片
+                if(all[clickcount/2 - 0.5] === "狼人") {
+                    roleImg.attr("src", "../image/wolf4.png");
+                }else {
+                    roleImg.attr("src", "../image/human4.png");
+                }
+
+                //依据“玩家号”决定底部按钮内容及是否跳转
+                if(clickcount > 2 * all.length - 1) {
+                    location.href = "roles-display.html";
+                }else if(clickcount === 2 * all.length - 1){
+                    check.text("传递给上帝");
+                    cardMsg.html(idMsg);//卡牌底部的信息
+                }else {
+                    check.text("隐藏，并传递给 " + (clickcount/2 + 1.5)  + " 号玩家");
+                    cardMsg.html(idMsg);//卡牌底部的信息
+                }
+            }
+
+            //当点击次数为双数时，隐藏卡牌信息
+            else {
+                roleImg.attr("src", "../image/back-face2.png");//显示“卡牌背面”图片
+
+                //根据“玩家号”是否为最后一位决定底部按钮内容
+                if(clickcount > 2 * all.length - 1 ) {
+                    check.text("上帝查看");
+                    cardMsg.text("只有上帝可以查看所有玩家身份");
+                }else {
+                    check.text("查看" + (clickcount/2 +1) + "号玩家身份");
+                    cardMsg.text("不可偷看其他玩家身份哦！");
+                }
+            }
+            clickcount++;
+        });
+
+        //“skip”按钮可跳过传递查看身份阶段至角色陈列页面
+        $("#skip").click(function () {
+            location.href = "roles-display.html";
+        });
+    })
+</script>
+</html>

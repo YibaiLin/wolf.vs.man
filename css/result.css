@@ -1,75 +1,48 @@
-body{
-    margin: 0;
-    padding: 0;
-    color:white;
-    font-size:18px;
-    background-color:   #b266ff;
+.fonts {
+    font-size: 28px;
+    color: #1a1a1a;
 }
-header{
-    width: 100%;
-    height: 60px;
-    line-height:60px;
-    text-align: center;
+
+main {
+    padding:40px 20px;
+    min-height: 650px;
+
+    font-size: 24px;
+
+    color: #b56969;
 }
-main{
-    width: 100%;
-    border-top:1px solid white;
-    padding:40px 10%;
-}
-.main-img{
-    background: url("../image/result-img.png") no-repeat;
-    background-size:100%;
+
+.champion-img {
+    margin:20px auto;
     width: 220px;
     height: 160px;
-    line-height: 203px;
+
+    font-size: smaller;
+    letter-spacing: 4px;
+    line-height: 206px;
     text-align: center;
-    margin:40px auto;
 
+    color: #fff;
+    background: url("../image/result-img.png") no-repeat;
+    background-size:100%;
 }
-.main-middle{
-    margin:40px auto;
-    width: 100%;
 
+.shadow {
+    margin: 30px 0;
+    padding: 30px 15px 30px 25px;
 }
-.main-bottom{
-    margin:40px auto;
-    width: 100%;
-}
-.each-day{
-    border-top:1px solid white;
 
+.days {
+    margin: 10px 0;
 }
-footer{
-    position: fixed;
-    bottom:5px;
-    left:10%;
-    width: 80%;
-    background-color: rgba(51, 26, 0,0.3);
-    padding:30px 0;
-    display: flex;
-    justify-content: center;
-    border-radius: 10px;
 
+.process {
+    font-size: 18px;
+    letter-spacing: 3px;
 }
-#onceMore{
-    background-color: #ff3e00;
-    width: 150px;
-    height: 50px;
-    border:0;
-    border-radius: 10px;
-    text-align: center;
-    color:white;
-    font-size: 20px;
-    margin-right: 20px;
+
+.f-btn {
+    width: 156px;
+    margin: 0 25px;
 }
-#share{
-    background-color: #ff7e00;
-    width: 150px;
-    height: 50px;
-    border:0;
-    border-radius: 10px;
-    text-align: center;
-    color:white;
-    font-size: 20px;
-    margin-left: 20px;
-}
+

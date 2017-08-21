@@ -1,0 +1,108 @@
+/*本页是"wolf_vs_man"项目的共用属性及常用属性值样式表*/
+* {
+    box-sizing: border-box;
+}
+
+/*标签类别：body, header, footer, button*/
+body {
+    margin: 0;
+    border: 0;
+
+    font-family: Georgia, "Times New Roman", "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑",serif;
+    font-size: 28px;
+    line-height: 1.5;
+
+    color: #24292e;
+}
+
+header,
+footer {
+    border-radius: 8px;
+    padding: 30px;
+
+    text-align: center;
+
+    color: #fff;
+    background-color: #428bca;
+}
+
+main {
+    margin-bottom: 100px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+
+    width: 730px;
+
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+button {
+    border-width: 0;
+
+    font-size: 24px;
+
+    color: #fff;
+    background-color: #428bca;
+
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #6534ff;
+}
+
+/*自定义类别：wrap, f-btn*/
+.wrap {
+    overflow: hidden;
+
+    margin: 24px auto;
+    padding: 0 25px;
+    width: 780px;
+
+    box-shadow: 0 0 5px rgba(202,203,203,0.5);
+}
+
+.f-btn {
+    border-radius: 8px;
+    padding: 20px 30px;
+}
+
+/*定制属性值类*/
+.center {
+    text-align: center;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.margin-top1 {
+    margin-top: 24px;
+}
+
+.padding-top1 {
+    padding-top: 25px;
+}
+
+.padding-left1 {
+    padding-left: 25px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.shadow {
+    box-shadow: 0 0 25px rgba(203, 203, 203, 0.5);
+
+    cursor: pointer;
+}
+
+.shadow:hover {
+    box-shadow: 15px 15px 25px rgba(203, 203, 203, 0.5);;
+}

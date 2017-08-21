@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>before</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/before-night.css">
+</head>
+<body>
+<div class="wrap">
+    <div class="fonts">
+        <header>上帝视角</header>
+
+        <main>
+            <!--动态显示“第几天”-->
+
+            <!--游戏流程部分-->
+            <div class="content shadow" id="process">
+
+                    <!--左侧“太阳”和“月亮”图案-->
+                    <img src="../image/step-night.png" class="night">
+                    <img src="../image/step-sun.png" class="sun">
+
+                    <!--步骤1-->
+                    <div  class="content-step-part">
+                        <i class="triangle-left"></i>
+                        <span>杀手杀人</span>
+                    </div>
+
+                    <!--步骤2-->
+                    <div  class="content-step-part">
+                        <i class="triangle-left"></i>
+                        <span>亡灵发表遗言</span>
+                    </div>
+
+                    <!--步骤3-->
+                    <div  class="content-step-part">
+                        <i class="triangle-left"></i>
+                        <span>玩家依次发言</span>
+                    </div>
+
+                    <!--步骤4-->
+                    <div  class="content-step-part">
+                        <i class="triangle-left"></i>
+                        <span>投票</span>
+                    </div>
+            </div>
+        </main>
+
+        <footer><button class="f-btn" id="eyeClosed">天黑请闭眼</button></footer>
+    </div>
+</div>
+<script src="../jQuery/jquery-3.2.1.js"></script>
+<script>
+    $(document).ready(function () {
+        var players = JSON.parse(sessionStorage.players);//提取保存玩家信息的对象数组
+        console.log(players);
+        var game = JSON.parse(sessionStorage.game);//提取保存游戏进程信息的数组
+        var capital = ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十"];//定义并保存汉字数字
+        sessionStorage.capital = JSON.stringify(capital);
+        var content = "";
+
+        //动态生成游戏天数信息
+        for(var i=0; i < game.day; i++) {
+            content = "<div class='which-day shadow'>第" + capital[i] + "天</div>";
+            $("#process").before(content);
+        }
+
+        //跳转至“天，黑了”页面
+        $("#eyeClosed").click(function () {
+            location.href = "night.html";
+        })
+    })
+</script>
+
+</body>
+</html>

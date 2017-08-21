@@ -1,0 +1,124 @@
+.fonts {
+    color: #fff;
+    font-size: 20px;
+}
+
+@keyframes fade-in {
+    from {
+        left: 0;
+        transform: translate(-100%, -50%);
+    }
+    to {
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes opacity {
+    from {opacity: 0;}
+    to   {opacity: 1;}
+}
+
+header {
+    position: relative;
+
+    font-size: 28px;
+}
+
+.tip {
+    position: relative;
+
+    border-radius: 10px;
+    width: 100%;
+    height: 75px;
+
+    line-height: 75px;
+
+    background-color: #428bca;
+}
+
+.skip {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+
+    border-radius: 8px;
+    padding: 10px 20px;
+
+    color: #996BC8;
+    background-color: #fff;
+
+    transform: translate(0, -50%);
+}
+
+.skip:hover {
+    background-color: #bfb08d;
+    color: #fff;
+}
+
+.triangle {
+    position: relative;
+    left: 20px;
+    top: -71px;
+
+    border: 24px solid transparent;
+    border-bottom-color: #428bca;
+    width: 24px;
+    height: 24px;
+}
+
+.game-card {
+    position: relative;
+
+    width: 100%;
+    height: 450px;
+
+    color: #996BC8;
+
+    box-shadow: 0 0 30px rgba(202,203,203,0.5);
+}
+
+.img-responsive {
+    position: absolute;
+    top: 50%;
+
+    transition: width 2s;
+    animation: fade-in 1s;
+    animation-fill-mode:forwards;
+    animation-iteration-count: 1;
+
+    cursor: pointer;
+}
+
+.img-responsive:hover {
+    width: 210px;
+}
+
+.card-msg {
+    position: absolute;
+    left: 50%;
+    bottom: 15px;
+
+    width: 80%;
+
+    text-align: center;
+
+    transform: translate(-50%);
+    animation: opacity 2s;
+}
+
+.emphasis {
+    font-size: larger;
+    font-weight: bolder;
+}
+
+#playerNum {
+    padding-right: 5px;
+
+    font-size: 28px;
+}
+
+.check {
+    width: 100%;
+    padding: 30px;
+}
