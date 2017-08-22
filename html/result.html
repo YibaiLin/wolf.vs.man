@@ -44,7 +44,7 @@
 
         //动态记录游戏过程
         for(var i=0; i < game.day; i++) {
-            content += "<div class='shadow'><h4 class='days'>第" + capital[i ] + "天</h4><div class='process'>晚上：" + killed[i] + "号选手被杀死，" + killed[i] + "号的真实身份是平民<br/>白天：" + voted[i] + "号选手被全民放逐，" + voted[i] + "号的真实身份是狼人</div></div>";
+            content += "<div class='shadow'><h4 class='days'>第" + capital[i ] + "天</h4><div class='process'>晚上：" + killed[i] + "号选手被杀死，" + killed[i] + "号的真实身份是" + players[killed[i] - 1].role +  "<br/>白天：" + voted[i] + "号选手被全民放逐，" + voted[i] + "号的真实身份是" + players[voted[i] - 1].role + "</div></div>";
         }
 
         $("main").append(content);//将游戏过程添加到页面中

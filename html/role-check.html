@@ -58,22 +58,24 @@
 
             //当点击次数为单数时，显示身份信息
             if(clickcount % 2 !== 0) {
-                //根据角色加载图片
-                if(all[clickcount/2 - 0.5] === "狼人") {
-                    roleImg.attr("src", "../image/wolf4.png");
-                }else {
-                    roleImg.attr("src", "../image/human4.png");
-                }
-
                 //依据“玩家号”决定底部按钮内容及是否跳转
                 if(clickcount > 2 * all.length - 1) {
                     location.href = "roles-display.html";
-                }else if(clickcount === 2 * all.length - 1){
-                    check.text("传递给上帝");
-                    cardMsg.html(idMsg);//卡牌底部的信息
                 }else {
-                    check.text("隐藏，并传递给 " + (clickcount/2 + 1.5)  + " 号玩家");
+                    //根据角色加载图片
+                    if(all[clickcount/2 - 0.5] === "狼人") {
+                        roleImg.attr("src", "../image/wolf4.png");
+                    }else {
+                        roleImg.attr("src", "../image/human4.png");
+                    }
+
                     cardMsg.html(idMsg);//卡牌底部的信息
+
+                    if(clickcount === 2 * all.length - 1){
+                        check.text("传递给上帝");
+                    }else {
+                        check.text("隐藏，并传递给 " + (clickcount/2 + 1.5)  + " 号玩家");
+                    }
                 }
             }
 
