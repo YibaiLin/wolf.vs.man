@@ -1,17 +1,17 @@
 .card-top {
-    margin: 20px 0;
-    height: 75px;
+    margin: 0.20rem 0;
+    height: 0.75rem;
 
-    font-size: 28px;
-    line-height: 75px;
+    font-size: 0.28rem;
+    line-height: 0.75rem;
     text-align: center;
 }
 
 .card-content {
     position: relative;
 
-    border-radius: 10px;
-    height: 299px;
+    border-radius: 0.10rem;
+    height: 2.99rem;
 
     background-color: #ba9077;
 }
@@ -22,8 +22,8 @@
 
 .start {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
+    bottom: 0.20rem;
+    right: 0.20rem;
 
     background-color: transparent;
 }

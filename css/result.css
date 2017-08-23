@@ -1,25 +1,25 @@
 .fonts {
-    font-size: 28px;
+    font-size: 0.28rem;
     color: #1a1a1a;
 }
 
 main {
-    padding:40px 20px;
-    min-height: 650px;
+    padding: 0.40rem 0.20rem;
+    min-height: 6.50rem;
 
-    font-size: 24px;
+    font-size: 0.24rem;
 
     color: #b56969;
 }
 
 .champion-img {
-    margin:20px auto;
-    width: 220px;
-    height: 160px;
+    margin: 0.20rem auto;
+    width: 2.20rem;
+    height: 1.60rem;
 
     font-size: smaller;
-    letter-spacing: 4px;
-    line-height: 206px;
+    letter-spacing: 0.04rem;
+    line-height: 2.06rem;
     text-align: center;
 
     color: #fff;
@@ -28,21 +28,21 @@ main {
 }
 
 .shadow {
-    margin: 30px 0;
-    padding: 30px 15px 30px 25px;
+    margin: 0.30rem 0;
+    padding: 0.30rem 0.15rem 0.30rem 0.25rem;
 }
 
 .days {
-    margin: 10px 0;
+    margin: 0.10rem 0;
 }
 
 .process {
-    font-size: 18px;
-    letter-spacing: 3px;
+    font-size: 0.18rem;
+    letter-spacing: 0.03rem;
 }
 
 .f-btn {
-    width: 156px;
-    margin: 0 25px;
+    width: 1.56rem;
+    margin: 0 0.25rem;
 }
 

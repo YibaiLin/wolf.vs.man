@@ -1,24 +1,24 @@
 .fonts {
-    font-size: 28px;
+    font-size: 0.28rem;
 }
 
 main {
     overflow: hidden;
-    min-height: 650px;
+    min-height: 6.50rem;
 }
 
 .identity {
     float: left;
     flex-direction: column;
 
-    margin: 50px 20px;
-    padding-top: 20px;
-    width: 200px;
-    height: 248px;
+    margin: 0.50rem 2.6%;
+    padding-top: 0.20rem;
+    width: 28%;
+    height: 2.48rem;
 }
 
 .player {
-    font-size: 25px;
-    margin-top: 25px;
+    font-size: 0.25rem;
+    margin-top: 0.25rem;
 }
 

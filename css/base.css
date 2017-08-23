@@ -2,6 +2,9 @@
 * {
     box-sizing: border-box;
 }
+html {
+    font-size: 100px;
+}
 
 /*标签类别：body, header, footer, button*/
 body {
@@ -9,7 +12,7 @@ body {
     border: 0;
 
     font-family: Georgia, "Times New Roman", "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑",serif;
-    font-size: 28px;
+    font-size: 0.28rem;
     line-height: 1.5;
 
     color: #24292e;
@@ -17,8 +20,8 @@ body {
 
 header,
 footer {
-    border-radius: 8px;
-    padding: 30px;
+    border-radius: 0.08rem;
+    padding: 0.30rem;
 
     text-align: center;
 
@@ -27,22 +30,26 @@ footer {
 }
 
 main {
-    margin-bottom: 100px;
+    margin-bottom: 1rem;
 }
 
 footer {
     position: fixed;
     bottom: 0;
 
-    width: 730px;
+    width: 100%;
 
     background-color: rgba(255, 255, 255, 0.5);
+}
+
+@media screen and (min-width: 730px){
+    footer {width: 7.3rem}
 }
 
 button {
     border-width: 0;
 
-    font-size: 24px;
+    font-size: 0.24rem;
 
     color: #fff;
     background-color: #428bca;
@@ -54,20 +61,30 @@ button:hover {
     background-color: #6534ff;
 }
 
+img {
+    max-width: 100%;
+}
+
 /*自定义类别：wrap, f-btn*/
 .wrap {
     overflow: hidden;
 
-    margin: 24px auto;
-    padding: 0 25px;
-    width: 780px;
+    margin: 0 auto;
+    padding: 0 0.25rem;
 
-    box-shadow: 0 0 5px rgba(202,203,203,0.5);
+    box-shadow: 0 0 0.05rem rgba(202,203,203,0.5);
+}
+
+@media screen and (min-width: 730px){
+    .wrap {
+        width: 7.3rem;
+        margin: 0.24rem auto;
+    }
 }
 
 .f-btn {
-    border-radius: 8px;
-    padding: 20px 30px;
+    border-radius: 0.08rem;
+    padding: 0.20rem 0.30rem;
 }
 
 /*定制属性值类*/
@@ -82,15 +99,15 @@ button:hover {
 }
 
 .margin-top1 {
-    margin-top: 24px;
+    margin-top: 0.24rem;
 }
 
 .padding-top1 {
-    padding-top: 25px;
+    padding-top: 0.25rem;
 }
 
 .padding-left1 {
-    padding-left: 25px;
+    padding-left: 0.25rem;
 }
 
 .pointer {
@@ -98,11 +115,11 @@ button:hover {
 }
 
 .shadow {
-    box-shadow: 0 0 25px rgba(203, 203, 203, 0.5);
+    box-shadow: 0 0 0.25rem rgba(203, 203, 203, 0.5);
 
     cursor: pointer;
 }
 
 .shadow:hover {
-    box-shadow: 15px 15px 25px rgba(203, 203, 203, 0.5);;
+    box-shadow: 0.15rem 0.15rem 0.25rem rgba(203, 203, 203, 0.5);;
 }

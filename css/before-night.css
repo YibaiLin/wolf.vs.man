@@ -6,17 +6,17 @@ main{
     position:relative;
     left:2%;
 
-    padding:20px 0;
+    padding:0.2rem 0;
     width: 96%;
 }
 
 .which-day {
-    margin: 20px 0 30px 50px;
-    padding: 20px 0;
+    margin: 0.2rem 0 0.30rem 0.50rem;
+    padding: 0.2rem 0;
 
-    font-size: 30px;
+    font-size: 0.30rem;
     text-align: center;
-    letter-spacing: 6px;
+    letter-spacing: 0.06rem;
 
     color: #428bca;
 }
@@ -24,45 +24,45 @@ main{
 .content {
     position: relative;
 
-    margin-left: 50px;
-    border-left: 2px solid #c9c9c9;
-    padding: 60px;
+    margin-left: 0.50rem;
+    border-left: 0.02rem solid #c9c9c9;
+    padding: 0.60rem;
 }
 
 .night,
 .sun{
     position: absolute;
-    top:60px;
-    left: -32px;
+    top:0.60rem;
+    left: -0.32rem;
 }
 
 .sun{
-    top:300px;
+    top:0.300rem;
 }
 
 .content-step-part {
     position: relative;
 
-    margin-bottom: 40px;
-    border-radius: 8px;
+    margin-bottom: 0.40rem;
+    border-radius: 0.08rem;
     width: 100%;
-    height:60px;
+    height:0.60rem;
 
-    line-height: 60px;
+    line-height: 0.60rem;
     text-align: center;
 
     background-color: #428bca;
 
-    box-shadow: 0 0 25px rgba(66, 139, 202, 0.5);
+    box-shadow: 0 0 0.25rem rgba(66, 139, 202, 0.5);
 
     cursor: pointer;
 }
 
 .triangle-left {
     position: absolute;
-    top: 18px;
-    left: -24px;
+    top: 0.18rem;
+    left: -0.24rem;
 
-    border:12px solid;
+    border:0.12rem solid;
     border-color: transparent #428bca    transparent transparent;
 }
