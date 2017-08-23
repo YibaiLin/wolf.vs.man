@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c9f666d-f6e7-40bb-9a36-f9a08de8f81b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/index.css" afterPath="$PROJECT_DIR$/css/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/match.css" afterPath="$PROJECT_DIR$/css/match.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/result.css" afterPath="$PROJECT_DIR$/css/result.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/role-check.css" afterPath="$PROJECT_DIR$/css/role-check.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/roles-display.css" afterPath="$PROJECT_DIR$/css/roles-display.css" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -114,8 +109,8 @@
       <file leaf-file-name="role-check.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/css/role-check.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+            <state relative-caret-position="481">
+              <caret line="135" column="36" lean-forward="true" selection-start-line="135" selection-start-column="36" selection-end-line="135" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -302,12 +297,12 @@
       <workItem from="1503198703852" duration="17306000" />
       <workItem from="1503275759124" duration="35587000" />
       <workItem from="1503387831486" duration="3315000" />
-      <workItem from="1503473834323" duration="9837000" />
+      <workItem from="1503473834323" duration="10310000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="151542000" />
+    <option name="totallyTimeSpent" value="152015000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -703,8 +698,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/css/role-check.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        <state relative-caret-position="481">
+          <caret line="135" column="36" lean-forward="true" selection-start-line="135" selection-start-column="36" selection-end-line="135" selection-end-column="36" />
           <folding />
         </state>
       </provider>
