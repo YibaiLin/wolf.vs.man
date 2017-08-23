@@ -22,6 +22,13 @@
     background-color: #ba9077;
 }
 
+@media screen and (max-width: 730px){
+    .card-content {
+        margin: 0 0.1rem;
+        background-color: #dbe9d8;
+    }
+}
+
 .card-content:hover {
     background-color: #dbe9d8;
 }

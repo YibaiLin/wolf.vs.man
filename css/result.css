@@ -46,6 +46,12 @@ main {
     margin: 0 0.25rem;
 }
 
+@media screen and (max-width: 412px){
+    footer {
+        padding: 0.3rem 0;
+    }
+}
+
 @media screen and (max-width: 730px){
     .f-btn {
         margin: 0;

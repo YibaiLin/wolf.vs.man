@@ -22,6 +22,13 @@ main {
         margin: 0.2rem 0.08rem;}
 }
 
+@media screen and (max-width: 412px){
+    .identity {
+        width: 1.6rem;
+        margin: 0.2rem 0.1rem;
+    }
+}
+
 .player {
     font-size: 0.25rem;
     margin-top: 0.25rem;

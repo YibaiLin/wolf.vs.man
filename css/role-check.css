@@ -51,6 +51,13 @@ header {
     transform: translate(0, -50%);
 }
 
+@media screen and (max-width: 412px){
+    .skip {
+        padding: 0.1rem;
+        font-size: 0.2rem;
+    }
+}
+
 .skip:hover {
     background-color: #bfb08d;
     color: #fff;
@@ -82,9 +89,21 @@ header {
     position: absolute;
     top: 50%;
 
+    -webkit-transition: width 2s;
+    -moz-transition: width 2s;
+    -ms-transition: width 2s;
+    -o-transition: width 2s;
     transition: width 2s;
+    -webkit-animation: fade-in 1s;
+    -o-animation: fade-in 1s;
     animation: fade-in 1s;
-    animation-fill-mode:forwards;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+    -o-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-iteration-count: 1;
+    -moz-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
     animation-iteration-count: 1;
 
     cursor: pointer;
@@ -103,7 +122,13 @@ header {
 
     text-align: center;
 
+    -webkit-transform: translate(-50%);
+    -moz-transform: translate(-50%);
+    -ms-transform: translate(-50%);
+    -o-transform: translate(-50%);
     transform: translate(-50%);
+    -webkit-animation: opacity 2s;
+    -o-animation: opacity 2s;
     animation: opacity 2s;
 }
 
