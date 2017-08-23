@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0c9f666d-f6e7-40bb-9a36-f9a08de8f81b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/match.html" afterPath="$PROJECT_DIR$/html/match.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,8 +20,18 @@
       <file leaf-file-name="match.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/html/match.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-626">
-              <caret line="9" column="47" lean-forward="false" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
+            <state relative-caret-position="427">
+              <caret line="47" column="7" lean-forward="true" selection-start-line="47" selection-start-column="7" selection-end-line="47" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-59">
+              <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -82,7 +93,6 @@
         <option value="$PROJECT_DIR$/html/new-result.html" />
         <option value="$PROJECT_DIR$/html/new-result.html" />
         <option value="$PROJECT_DIR$/js/match.js" />
-        <option value="$PROJECT_DIR$/html/match.html" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/html/roles-display.html" />
         <option value="$PROJECT_DIR$/README.md" />
@@ -97,6 +107,7 @@
         <option value="$PROJECT_DIR$/css/result.css" />
         <option value="$PROJECT_DIR$/css/role-check.css" />
         <option value="$PROJECT_DIR$/css/roles-display.css" />
+        <option value="$PROJECT_DIR$/html/match.html" />
       </list>
     </option>
   </component>
@@ -164,6 +175,12 @@
               <item name="wolf_vs_man" type="462c0819:PsiDirectoryNode" />
               <item name="node_modules" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="wolf_vs_man" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wolf_vs_man" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+              <item name="ion-rangeslider" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -179,6 +196,11 @@
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.CSS" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="SearchEverywhereHistoryKey" value="setting&#9;FILE&#9;file://D:/Github-repositories/wolf.vs.man/image/setting-range.png" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Github-repositories\wolf_vs_man\node_modules\jquery\dist" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -210,12 +232,12 @@
       <workItem from="1503198703852" duration="17306000" />
       <workItem from="1503275759124" duration="35587000" />
       <workItem from="1503387831486" duration="3315000" />
-      <workItem from="1503473834323" duration="2253000" />
+      <workItem from="1503473834323" duration="4016000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143958000" />
+    <option name="totallyTimeSpent" value="145721000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -569,14 +591,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/roles-display.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="351">
@@ -609,10 +623,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-59">
+          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/html/match.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-626">
-          <caret line="9" column="47" lean-forward="false" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
+        <state relative-caret-position="427">
+          <caret line="47" column="7" lean-forward="true" selection-start-line="47" selection-start-column="7" selection-end-line="47" selection-end-column="7" />
           <folding />
         </state>
       </provider>
