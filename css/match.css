@@ -1,14 +1,18 @@
 .info-board {
     overflow: hidden;
 
+    display: flex;
+    justify-content: space-around;
+
     padding-top: 0.30rem;
 }
 
 .wolf,
 .human {
-    float: left;
+    display: flex;
+    flex-direction: column;
 
-    width: 50%;
+    float: left;
 
     text-align: center;
 }
@@ -16,7 +20,6 @@
 .wolf-num,
 .human-num {
     font-size: 0.38rem;
-    padding-left: 0.30rem;
 }
 
 .search-box {
@@ -51,6 +54,10 @@
     border-top-right-radius: 0.10rem;
     border-bottom-right-radius: 0.10rem;
     width: 25%;
+}
+
+@media screen and (max-width: 730px){
+    .go-now {font-size: 0.18rem;}
 }
 
 .deal {

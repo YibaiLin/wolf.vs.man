@@ -6,6 +6,7 @@
 main{
     flex-direction: column;
 
+    margin-bottom: 0.1rem;
     border-top:0.02rem solid #f7f7f7;
     border-bottom:0.02rem solid #f7f7f7;
     padding:0.30rem;

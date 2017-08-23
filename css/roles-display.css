@@ -11,10 +11,15 @@ main {
     float: left;
     flex-direction: column;
 
-    margin: 0.50rem 2.6%;
+    margin: 0.50rem 0.18rem;
     padding-top: 0.20rem;
-    width: 28%;
+    width: 1.9rem;
     height: 2.48rem;
+}
+
+@media screen and (max-width: 730px){
+    .identity {
+        margin: 0.2rem 0.08rem;}
 }
 
 .player {
