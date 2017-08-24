@@ -14,4 +14,4 @@
 
 ### apk 下载
 
-08.24 更新。用 phonegap + corcova 将该程序生成了一个 **安卓** app。<a href="https://github.com/YibaiLin/wolf_vs_human/src/wolf_vs_human.apk" download="狼人杀--上帝助手.apk">点击下载</a>
+08.24 更新。用 phonegap + corcova 将该程序生成了一个 **安卓** app。<a href="https://github.com/YibaiLin/wolf_vs_human/raw/master/src/wolf_vs_human.apk" download="狼人杀--上帝助手.apk">点击下载</a>
